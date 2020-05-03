@@ -20,6 +20,7 @@ public class LuckyTicketTask implements Task {
         long[][] matrix = new long[num * 2][rows];
         for (int i = 0; i < num * 2; i++) {
             for (int j = 0; j < rows; j++) {
+                //set value for first column from 0 to 9
                 if (i == 0) {
                     if (j < 10) {
                         matrix[i][j] = 1;
@@ -28,13 +29,13 @@ public class LuckyTicketTask implements Task {
                         break;
                     }
                 }
-                matrix[i][j] = sum(matrix, i - 1, j);
+                matrix[i][j] = calculateFieldValue(matrix, i - 1, j);
             }
         }
         return "" + matrix[num * 2 - 1][rows - 1];
     }
 
-    private static long sum(long[][] m, int c, int r) {
+    private static long calculateFieldValue(long[][] m, int c, int r) {
         long result = 0;
         for (int i = Math.max(r - 9, 0); i <= r; i++) {
             result += m[c][i];
