@@ -18,6 +18,7 @@ public class Tester {
     }
 
     public void runTests() {
+        System.out.println("run tests");
         int nr = 0;
         while (true) {
             Path inFile = Path.of(String.format("%s/test.%d.in", path, nr));

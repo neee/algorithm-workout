@@ -7,15 +7,6 @@ public class LuckyTicketTask implements Task {
     @Override
     public String run(List<String> data) {
         int num = Integer.parseInt(data.get(0));
-        if (num == 1) {
-            return "10";
-        }
-        if (num == 2) {
-            return "670";
-        }
-        if (num == 3) {
-            return "55252";
-        }
         int rows = num * 9 + 1;
         long[][] matrix = new long[num * 2][rows];
         for (int i = 0; i < num * 2; i++) {
