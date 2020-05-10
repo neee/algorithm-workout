@@ -2,6 +2,7 @@ package ru.serdyuk.tester;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLOutput;
 import java.util.List;
 
 import ru.serdyuk.tester.task.Task;
@@ -27,7 +28,9 @@ public class Tester {
             if (!Files.exists(inFile) || !Files.exists(outFile)) {
                 break;
             }
+            long start = System.nanoTime();
             System.out.println(String.format("Test %d - %s", nr,  runTest(inFile, outFile)));
+            System.out.println(String.format("time execution: %d", System.nanoTime() - start));
             nr++;
         }
     }
@@ -37,7 +40,11 @@ public class Tester {
             List<String> data = Files.readAllLines(inFile);
             String expect = Files.readString(outFile).trim();
             String actual = task.run(data);
-            return actual.equals(expect);
+            boolean result = actual.equals(expect);
+            if (!result) {
+                System.out.printf("actual: %s, expected: %s%n", actual, expect);
+            }
+            return result;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
