@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Task {
 
-    String run(List<String> data);
+    Object run(List<String> data);
 }

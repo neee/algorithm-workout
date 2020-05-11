@@ -2,7 +2,6 @@ package ru.serdyuk.tester;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.SQLOutput;
 import java.util.List;
 
 import ru.serdyuk.tester.task.Task;
@@ -39,10 +38,10 @@ public class Tester {
         try {
             List<String> data = Files.readAllLines(inFile);
             String expect = Files.readString(outFile).trim();
-            String actual = task.run(data);
+            String actual = task.run(data).toString();
             boolean result = actual.equals(expect);
             if (!result) {
-                System.out.printf("actual: %s, expected: %s%n", actual, expect);
+                System.out.printf("actual, expected: %n%s%n%s%n", actual, expect);
             }
             return result;
         } catch (Exception e) {

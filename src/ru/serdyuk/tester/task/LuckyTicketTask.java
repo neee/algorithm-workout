@@ -5,7 +5,7 @@ import java.util.List;
 public class LuckyTicketTask implements Task {
 
     @Override
-    public String run(List<String> data) {
+    public Object run(List<String> data) {
         int num = Integer.parseInt(data.get(0));
         int rows = num * 9 + 1;
         long[][] matrix = new long[num * 2][rows];
@@ -23,7 +23,7 @@ public class LuckyTicketTask implements Task {
                 matrix[i][j] = calculateFieldValue(matrix, i - 1, j);
             }
         }
-        return "" + matrix[num * 2 - 1][rows - 1];
+        return matrix[num * 2 - 1][rows - 1];
     }
 
     private static long calculateFieldValue(long[][] m, int c, int r) {

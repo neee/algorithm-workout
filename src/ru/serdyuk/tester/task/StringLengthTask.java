@@ -5,7 +5,7 @@ import java.util.List;
 public class StringLengthTask implements Task {
 
     @Override
-    public String run(List<String> data) {
+    public Object run(List<String> data) {
         return "" + data.get(0).length();
     }
 }
