@@ -1,8 +1,6 @@
 package ru.serdyuk.tester.task.fib;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.math.MathContext;
 import java.util.List;
 
 import ru.serdyuk.tester.task.Task;
