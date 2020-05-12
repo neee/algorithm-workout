@@ -25,7 +25,7 @@ public class FibMatrixTask implements Task {
             if ((v & 1) == 1) {
                 res = matrixMultiplier(res, base);
             }
-            base = matrixMultiplier(base, base);
+            base = matrixMultiplierSimmetric(base, base);
             v >>= 1;
         }
         return matrixMultiplier(res, base)[1][1];
@@ -36,6 +36,15 @@ public class FibMatrixTask implements Task {
         result[0][0] = first[0][0].multiply(second[0][0]).add(first[0][1].multiply(second[1][0]));
         result[0][1] = first[0][0].multiply(second[0][1]).add(first[0][1].multiply(second[1][1]));
         result[1][0] = first[1][0].multiply(second[0][0]).add(first[1][1].multiply(second[1][0]));
+        result[1][1] = first[1][0].multiply(second[0][1]).add(first[1][1].multiply(second[1][1]));
+        return result;
+    }
+
+    public static BigInteger[][] matrixMultiplierSimmetric(BigInteger[][] first, BigInteger[][] second) {
+        BigInteger[][] result = new BigInteger[2][2];
+        result[0][0] = first[0][0].multiply(second[0][0]).add(first[0][1].multiply(second[1][0]));
+        result[0][1] = first[0][0].multiply(second[0][1]).add(first[0][1].multiply(second[1][1]));
+        result[1][0] = result[0][1];
         result[1][1] = first[1][0].multiply(second[0][1]).add(first[1][1].multiply(second[1][1]));
         return result;
     }
